@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_06_010101) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_11_020628) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,6 +19,25 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_06_010101) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_accounts_on_user_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_categories_on_account_id"
+  end
+
+  create_table "operations", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.bigint "category_id", null: false
+    t.string "comment"
+    t.float "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_operations_on_account_id"
+    t.index ["category_id"], name: "index_operations_on_category_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -35,4 +54,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_06_010101) do
   end
 
   add_foreign_key "accounts", "users"
+  add_foreign_key "categories", "accounts"
+  add_foreign_key "operations", "accounts"
+  add_foreign_key "operations", "categories"
 end

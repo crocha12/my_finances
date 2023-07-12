@@ -9,13 +9,18 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.2.1/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <main class="container mx-auto mt-28 px-5 flex w-full">
-      <%= yield %>
+<!--<p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p> -->
+    <main class="container mx-auto mt-4 px-5 flex w-full">
+      <div class='flex flex-col w-full gap-4'>
+        <%= render 'layouts/partials/header' if user_signed_in? %> 
+        <%= yield %>
+      </div>
     </main>
   </body>
 </html>

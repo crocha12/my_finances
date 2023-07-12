@@ -1,0 +1,16 @@
+<div class="text-sm breadcrumbs">
+  <ul>
+    <li><%= link_to "Home", root_path %></li> 
+    <li>Nova conta</li>
+  </ul>
+</div>
+<div class="flex w-full justify-center items-center">
+  <%= form_with model: @account, class: "flex flex-col gap-2 form-control w-full max-w-xl" do |form| %>
+    <h1 class="text-3xl font-bold text-start mb-8">Criar uma conta</h1>
+    <%= form.label class: "label" do %>
+      <span class="label-text">Nome</span>
+    <% end %>
+    <%= form.text_field :name, class:"input input-bordered w-full max-w-xl" %>
+    <%= form.submit "Salvar", class: 'btn btn-primary' %>
+  <% end %>
+</div>

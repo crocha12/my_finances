@@ -1,4 +1,35 @@
-<div class='flex row justify-between w-full'>
-  <h1>Ola, <%= current_user.username.capitalize %></h1>
-  <%= link_to "Sair", destroy_user_session_path, data: {turbo_method: :delete} %>
+<div class='flex flex-row justify-between items-center'>
+  <h1 class="text-3xl font-bold">Contas</h1>
+  <%= link_to "Nova Conta", new_account_path, class: 'btn btn-primary' %>
+</div>
+
+<div class="overflow-x-auto mt-4">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Saldo</th>
+        <th>Opções</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @accounts.each do |account| %>
+        <tr>
+          <td><%= account.name %></td>
+          <td><%= account.balance %></td>
+          <td class='flex flex-row gap-2'>
+            <%= link_to '#' do %>
+              <i class="fa-solid fa-eye text-blue-500"></i>
+            <% end %>
+            <%= link_to '#' do %>
+              <i class="fa-solid fa-pencil text-green-500"></i>
+            <% end %>
+            <%= link_to '#' do %>
+              <i class="fa-solid fa-xmark fa-xl text-red-500"></i>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
